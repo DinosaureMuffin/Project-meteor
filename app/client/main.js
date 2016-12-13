@@ -28,4 +28,3 @@ Template.post.helpers
         return post.find();
     }
 } );
-
