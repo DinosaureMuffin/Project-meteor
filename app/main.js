@@ -28,9 +28,8 @@ if ( Meteor.isClient )
 
     Template.post.events
     ( {
-        'click #like' : function( event, template )
+        'click #like' : function( event )
         {
-
             var id_post = post.findOne({_id :this._id});
             likes = id_post.like + 1;
 
@@ -42,4 +41,16 @@ if ( Meteor.isClient )
             event.preventDefault();
         }
     } );
+
+    Template.post_insert.events({
+        'click #submit_post' : function(event, template)
+        {
+            var $author = template.find( "#author" );
+            var $text = template.find("#text");
+
+            if( $author.value !== "" && $text.value !== "" ){
+                post.insert( { author : $author.value , text : $text.value, like : 0 } );
+            }
+        }
+    })
 }

@@ -5,6 +5,7 @@
 <body>
 <h1>Welcome to Meteor!</h1>
 
+{{> post_insert}}
 {{> post}}
 
 </body>
@@ -17,7 +18,15 @@
 <template name="post">
     <ul>
         {{#each all_post}}
-        <li> {{ author }} <button id="like">like</button></li>
+
+            <li> {{ author }}</li>
+            <li>{{text}}</li>
+            <li>{{like}}</li><button id="like">like</button>
         {{/each}}
     </ul>
+</template>
+<template name="post_insert">
+    <input id="author" type="text" name="author" placeholder="auteur">
+    <textarea id="text" name="text" placeholder="texte"></textarea>
+    <input type="submit" id="submit_post" name="submit" placeholder="submit">
 </template>
