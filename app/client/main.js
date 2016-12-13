@@ -20,3 +20,12 @@ Template.hello.events({
     instance.counter.set(instance.counter.get() + 1);
   },
 });
+
+Template.post.helpers
+( {
+    all_post : function ()
+    {
+        return post.find();
+    }
+} );
+
