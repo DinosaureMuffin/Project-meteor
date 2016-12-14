@@ -1,28 +1,54 @@
 <head>
-    <title>app</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>test</title>
 </head>
 
 <body>
-<h1>Welcome to Meteor!</h1>
 
-{{> loginButtons}}
+<header>
+    <nav class="nav">
+        <ul>
+            {{> loginButtons}}
+        </ul>
+    </nav>
+</header>
+
+
 {{> post_insert}}
 {{> post}}
 
 </body>
 
 <template name="post">
-    <ul>
-        {{#each all_post}}
-            <li>{{ author }}</li>
-            <li>{{text}}</li>
-            <li>{{voters}}</li>
-            <li>{{like}}</li><button id="like">like</button>
-        {{/each}}
-    </ul>
+    <div class="idees">
+        <ul>
+            {{#each all_post}}
+                <li>
+                    <a href=""></a>
+                    <h2>{{author}}</h2>
+                    <p>{{text}}</p>
+                    <button id="like" class="like">{{like}}</button>
+                </li>
+            {{/each}}
+        </ul>
+    </div>
 </template>
 <template name="post_insert">
-    <input id="author" type="text" name="author" placeholder="auteur">
-    <textarea id="text" name="text" placeholder="texte"></textarea>
-    <input type="submit" id="submit_post" name="submit" placeholder="submit">
+    <div class="droite">
+        <h2>Ajoutez une idée</h2>
+        <form method="post" action="">
+            <p>
+                <label for="name">Qui êtes vous?</label><br />
+                <input id="author" type="text" name="author">
+                <br />
+                <br />
+                <label for="text">Votre idée</label>
+                <textarea id="text" name="text"></textarea>
+                <br />
+                <br />
+                <input type="submit" id="submit_post" value="Ajoutez mon idée" name="submit">
+            </p>
+        </form>
+    </div>
 </template>
