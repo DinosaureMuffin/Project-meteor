@@ -36,7 +36,7 @@ header{
 }
 
 .nav li a {
-	font-family: "Open Sans";
+	font-family: 'Open Sans', sans-serif;
     display: block;
     font-size: 14px;
     color: white;
@@ -84,13 +84,13 @@ header{
     margin-top: 0 !important;
     height: 50px;
     background: lightgrey;
-    font-family: "Open Sans";
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     border-radius: 10px 10px 0px 0px
 }
 
 .idees li p{
-	font-family: "Open Sans";
+	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	padding-left: 30px;
 	padding-right: 30px;
@@ -119,12 +119,13 @@ li button{
     
  }
 .droite h2{
-	font-family: "Impact";
+	font-family: 'Anton', sans-serif;
     text-align: center;
     margin-top: 70px;
+    font-size: 30px;
 }
 form{
-	font-family: "Open Sans";
+	font-family: 'Open Sans', sans-serif;
     color: #7a7f81;
     height: 460px;
     vertical-align: center;
@@ -138,7 +139,7 @@ input[type=submit], input[type=reset] {
     cursor: pointer;
     border: none;
     color: white;
-    font-family: "Open Sans";
+    font-family: 'Open Sans', sans-serif;
     font-size: 26px;
 }
 
@@ -164,3 +165,59 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#eeeeee, Direction=134, St
 	height: 120px;
 	width: 90%;
 }
+#login-buttons {
+    display: inline-block;
+    margin-right: 0.2px;
+    line-height: 1;
+    float: right;
+    color: white;
+    padding: 20px;
+}
+#login-dropdown-list {
+    position: absolute;
+    top: -1px;
+    left: -200px;
+}
+#login-buttons .login-close-text {
+    float: right;
+    position: relative;
+    padding-bottom: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+.accounts-dialog label {
+    display: inline;
+    font-family: 'Open Sans', sans-serif;
+}
+#login-buttons .login-button, .accounts-dialog .login-button {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    padding: 4px 8px;
+    font-size: 80%;
+   font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
+    text-align: center;
+    color: #000;
+   background: #fff;
+    border: 1px solid #f74049;
+    border-radius: 4px;
+}
+#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
+    background: #f74049;
+     color: #fff;
+}
+.accounts-dialog * {
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+    color: inherit;
+    font: inherit;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
