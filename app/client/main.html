@@ -5,13 +5,10 @@
 </head>
 
 <body>
-
+{{> loginButtons}}
 <header>
     <nav class="nav">
         <img src="/logo.png" alt="" width="150px" margin-top="30px">
-        <ul>
-            {{> loginButtons}}
-        </ul>
     </nav>
 </header>
 
@@ -30,6 +27,9 @@
                     <h2>{{author}}</h2>
                     <p>{{text}}</p>
                     <button id="like" class="like"><img src="/like.png">{{like}}</button>
+                    {{#if isAuthor}}
+                        <button id="update">Modifier votre idée</button>
+                    {{/if}}
                 </li>
             {{/each}}
         </ul>

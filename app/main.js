@@ -10,7 +10,7 @@ if ( Meteor.isServer )
             // Populate once
             if( ! post.find().count() )
             {
-                post.insert( {author : "Priou",author_id : Meteor.userId(), text : "Eric", like : 0, voters : []} );
+                post.insert( {author : "Priou", author_id : '', text : "Eric", like : 0, voters : []} );
             }
         }
     );
@@ -26,19 +26,19 @@ if ( Meteor.isClient )
         }
     } );
 
+
     Template.post.helpers
     ({
-        isPoster : function ()
+        isAuthor : function ()
         {
-            allPost = post.find()
-            $.each(allPost, function(value) {
-                if (value.author_id == Meteor.userId()) {
-                    isPoster = true;
-                }
-                return isPoster;
-            });
+            console.log(this);
+            isPoster = false;
+            if (this.author_id == Meteor.userId()) {
+                isPoster = true;
+            }
+            console.log(isPoster);
+            return isPoster;
         }
-
     });
 
     Template.post.events
@@ -64,6 +64,14 @@ if ( Meteor.isClient )
                 alert('nope');
             }
             event.preventDefault();
+        },
+
+        'click #update' : function (event) {
+            var updatedText = prompt('Modifiez votre idée', this.text);
+            post.update(this._id, {
+               $set : {text : updatedText},
+            });
+            event.preventDefault();
         }
     } );
 
@@ -78,7 +86,11 @@ if ( Meteor.isClient )
 
             if( $author.value !== "" && $text.value !== "" ){
 
-                post.insert( { author : $author.value, author_id : Meteor.userId(), text : $text.value, like : 0, voters : [] } );
+                if (Meteor.user() === null) {
+                    alert('nope');
+                } else {
+                    post.insert( { author : $author.value, author_id : Meteor.userId(), text : $text.value, like : 0, voters : [] } );
+                }
             }
         }
     })
