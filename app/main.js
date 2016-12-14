@@ -10,7 +10,7 @@ if ( Meteor.isServer )
             // Populate once
             if( ! post.find().count() )
             {
-                post.insert( {author : "Priou", text : "Eric", like : 0, voters : []} );
+                post.insert( {author : "Priou",author_id : Meteor.userId(), text : "Eric", like : 0, voters : []} );
             }
         }
     );
@@ -25,6 +25,22 @@ if ( Meteor.isClient )
             return post.find();
         }
     } );
+
+    Template.post.helpers
+    ({
+        isPoster : function ()
+        {
+            allPost = post.find()
+            $.each(allPost, function(value) {
+                if (value.author_id == Meteor.userId()) {
+                    isPoster = true;
+                }
+                return isPoster;
+            });
+        }
+
+    });
+
     Template.post.events
     ( {
         'click #like' : function( event ) {
@@ -62,7 +78,7 @@ if ( Meteor.isClient )
 
             if( $author.value !== "" && $text.value !== "" ){
 
-                post.insert( { author : $author.value , text : $text.value, like : 0, voters : [] } );
+                post.insert( { author : $author.value, author_id : Meteor.userId(), text : $text.value, like : 0, voters : [] } );
             }
         }
     })
