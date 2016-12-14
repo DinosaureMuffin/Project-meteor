@@ -58,7 +58,7 @@ if ( Meteor.isClient )
                         $set: {like: likes, voters: voters},
                     });
                 } else {
-                    alert('TASPASLEDROITDEVOTERESPECEDEPETITPEDESTRE');
+                    alert('Vous ne pouvez pas voter deux fois pour une seule idée');
                 }
             } else {
                 alert('nope');
@@ -87,7 +87,7 @@ if ( Meteor.isClient )
             if( $author.value !== "" && $text.value !== "" ){
 
                 if (Meteor.user() === null) {
-                    alert('nope');
+                    alert('Connectez vous avant de poster une idée');
                 } else {
                     post.insert( { author : $author.value, author_id : Meteor.userId(), text : $text.value, like : 0, voters : [] } );
                 }
