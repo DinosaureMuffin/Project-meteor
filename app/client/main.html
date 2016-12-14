@@ -5,22 +5,18 @@
 <body>
 <h1>Welcome to Meteor!</h1>
 
+{{> loginButtons}}
 {{> post_insert}}
 {{> post}}
 
 </body>
 
-<template name="hello">
-    <button>Click Me</button>
-    <p>You've pressed the button {{counter}} times.</p>
-</template>
-
 <template name="post">
     <ul>
         {{#each all_post}}
-
-            <li> {{ author }}</li>
+            <li>{{ author }}</li>
             <li>{{text}}</li>
+            <li>{{voters}}</li>
             <li>{{like}}</li><button id="like">like</button>
         {{/each}}
     </ul>

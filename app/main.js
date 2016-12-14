@@ -10,7 +10,7 @@ if ( Meteor.isServer )
             // Populate once
             if( ! post.find().count() )
             {
-                post.insert( {author : "Priou", text : "Eric", like : 45} );
+                post.insert( {author : "Priou", text : "Eric", like : 0, voters : []} );
             }
         }
     );
@@ -25,19 +25,28 @@ if ( Meteor.isClient )
             return post.find();
         }
     } );
-
     Template.post.events
     ( {
-        'click #like' : function( event )
-        {
-            var id_post = post.findOne({_id :this._id});
-            likes = id_post.like + 1;
+        'click #like' : function( event ) {
+            if (Meteor.userId() !== null) {
+                var id_post = post.findOne({_id: this._id});
+                likes = id_post.like + 1;
 
-            post.update(id_post._id, {
+                voters = id_post.voters;
+                if ($.inArray(Meteor.userId(), voters) === -1) {
 
-                $set: { like: likes },
-
-            });
+                    console.log($.inArray(Meteor.userId(), voters));
+                    voters.push(Meteor.userId());
+                    console.log(voters);
+                    post.update(id_post._id, {
+                        $set: {like: likes, voters: voters},
+                    });
+                } else {
+                    alert('TASPASLEDROITDEVOTERESPECEDEPETITPEDESTRE');
+                }
+            } else {
+                alert('nope');
+            }
             event.preventDefault();
         }
     } );
@@ -45,11 +54,15 @@ if ( Meteor.isClient )
     Template.post_insert.events({
         'click #submit_post' : function(event, template)
         {
+
+            console.log(Meteor.users);
+
             var $author = template.find( "#author" );
             var $text = template.find("#text");
 
             if( $author.value !== "" && $text.value !== "" ){
-                post.insert( { author : $author.value , text : $text.value, like : 0 } );
+
+                post.insert( { author : $author.value , text : $text.value, like : 0, voters : [] } );
             }
         }
     })
